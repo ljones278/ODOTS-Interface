@@ -1,5 +1,5 @@
 # ODOTS-Interface
-ODOTS Interface Source Code, a frozen version of this application (for windows) is available in the [ODOTS Release repository] (https://github.com/ljones278/ODOTS-Release). Currently no other platforms are supported, though changing this is mainly a case of changing the directory path names and the serial port handling.
+ODOTS Interface Source Code, a frozen version of this application (for windows) is available in the [ODOTS Release repository](https://github.com/ljones278/ODOTS-Release). Currently no other platforms are supported, though changing this is mainly a case of changing the directory path names and the serial port handling.
 
 ## Further Documentation
 
@@ -12,3 +12,6 @@ All software is released under the Apache License 2.0
 ## Dependant Libraries (Non Standard)
 
 [PySerial] (https://pythonhosted.org/pyserial/)
+
+
+Development funding provided by the [Orienteering Foundation](https://www.orienteeringfoundation.org.uk/).
