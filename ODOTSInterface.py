@@ -231,7 +231,7 @@ class HumanInterface():#multiprocessing.Process):
             #this one needs to be reworked
             self.ClosePort()
             time.sleep(0.5)
-            quit()
+            sys.exit()
             
         else:
             print(" !> Invalid Command, try inputting 'h' for help")
@@ -438,15 +438,45 @@ class SystemInterface(multiprocessing.Process):
             print("!!>>INTERRUPTION: Invalid command recieved by serial manager")
         
         
-        
-            
-        
+def JavaCheck():
+    #check if java JRE is installed, which is used for SendPunch.jar
+    print("---COMMENCING JAVA CHECK---")
+    JavaCheckFileName = 'JavaVersionStore.info'
+    os.system("java -version >"+JavaCheckFileName+" 2>&1") #calls java version call
 
 
 
+    JavaCheckFile = open(JavaCheckFileName, 'r')
+    Line = JavaCheckFile.readline()
+    while Line != "":
+            try:
+                    print(Line,end="")
+                    if Line[0:8] == 'operable':#start of second line of printout of error!
+                            print(" >> ERROR Java Runtime Environment not detected, please install a version\n"+\
+                                  "    of the JRE from \n"+\
+                                  "    https://www.oracle.com/technetwork/java/javase/downloads/index.html \n"+\
+                                  "    (application developed with JRE 1.8.0). \n"+\
+                                  "    \n"+\
+                                  "    Java required to interface with Competition management software, if \n"+\
+                                  "    this functionality is not required, program can still be used to \n"+\
+                                  "    configure ODOTS Units.\n"+\
+                                  "    \n"+\
+                                  "    Continue using program with limited functionality?\n"+\
+                                  "    y/n\n")
+                            GoNoGo = input(" >>").lower()
+                            if GoNoGo != 'y':
+                                    JavaCheckFile.close()
+                                    os.remove(JavaCheckFileName)
+                                    sys.exit()
+                    Line = JavaCheckFile.readline()
+
+            except:
+                    break
+    print("---    JRE Check End    ---")
 
 if __name__ =='__main__':
     multiprocessing.freeze_support() #adds support for running multiple processes in frozen configuration on windows!
+    JavaCheck()
     #Loop
     HtoS = Queue()
     StoH = Queue()
