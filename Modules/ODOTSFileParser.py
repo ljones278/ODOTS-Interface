@@ -79,10 +79,10 @@ class FileParserTCPWriter():
             PunchCodes = Entry[0]+","+PunchCodes
             PunchTimes = Entry[1]+","+PunchTimes
         #remove the sneaky extra comma
-        PunchCodes=PunchCodes[:]
-        PunchTimes=PunchTimes[:]
+        PunchCodes=PunchCodes[:-1]
+        PunchTimes=PunchTimes[:-1]
         #construct string to be passed to java as arguments
-        ReturnString = "C "+str(NumberOfPunches+1)+" "+str(CardID)+" "+PunchCodes+" "+PunchTimes
+        ReturnString = "C "+str(NumberOfPunches)+" "+str(CardID)+" "+PunchCodes+" "+PunchTimes
 
         
         return ReturnString
